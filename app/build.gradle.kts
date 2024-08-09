@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.parcelize)
 }
 
 android {
@@ -13,6 +14,13 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            "\"https://reqres.in/api/\""
+        )
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,6 +41,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -45,4 +57,31 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //circle img
+    implementation(libs.circleImageView)
+
+    //glide
+    implementation(libs.glide)
+    annotationProcessor(libs.glideCompiler)
+
+    //retrofit + okhttp3
+    implementation(libs.retrofit)
+    implementation(libs.converterGson)
+    implementation(libs.loggingInterceptor)
+
+    //lifecycle
+    implementation(libs.lifecycleRuntimeKtx)
+
+    //coroutines
+    implementation(libs.lifecycleViewModelKtx)
+    implementation(libs.coroutinesCore)
+    implementation(libs.lifecycleLivedataKtx)
+    implementation(libs.coroutinesAndroid)
+
+    //swipe refresh layout
+    implementation(libs.swiperefreshlayout)
+
+    //paging 3
+    implementation(libs.androidx.paging.runtime.ktx)
 }
